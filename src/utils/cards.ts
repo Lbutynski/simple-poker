@@ -25,7 +25,6 @@ export const detectHand = (hand: Deck) => {
     }
     return { ...acc, [next.value]: acc[next.value] + 1 };
   }, {});
-  console.log(cardMap);
   const result = [];
   for (const [value, occurence] of Object.entries(cardMap)) {
     if (occurence === 4) result.push([{ handType: HandType.FOUR, value }]);
@@ -62,6 +61,10 @@ export const calculateScore = (result: Result) => {
   });
   return score;
 };
-export const detectWin = (playerHand: Deck, opponentHand: Deck) =>
-  calculateScore(detectHand(playerHand)) >
-  calculateScore(detectHand(opponentHand));
+export const detectWin = (playerHand: Deck, opponentHand: Deck) => {
+  const isWin =
+    calculateScore(detectHand(playerHand)) >
+    calculateScore(detectHand(opponentHand));
+  const winningHand = isWin ? detectHand(playerHand) : detectHand(opponentHand);
+  return { isWin, winningHand };
+};
