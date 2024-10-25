@@ -25,6 +25,7 @@ function App() {
     setUserHand(cardsPicked.slice(4));
     setState(State.USER);
   };
+
   return (
     <>
       <div className="w-[100vw] flex flex-col">

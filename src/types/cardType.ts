@@ -11,3 +11,20 @@ export enum State {
   USER = "user",
   RESULT = "result",
 }
+export enum HandType {
+  HIGHCARD = "high card",
+  PAIR = "pair",
+  THREE = "three of a kind",
+  FOUR = "four of a kind",
+}
+export type Result = Array<{ handType: HandType; value: string }>;
+export enum ValueEnum {
+  "SEVEN",
+  "EIGHT",
+  "NINE",
+  "TEN",
+  "JACK",
+  "QUEEN",
+  "KING",
+  "ACE",
+}
