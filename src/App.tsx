@@ -25,18 +25,28 @@ function App() {
     setUserHand(cardsPicked.slice(4));
     setState(State.USER);
   };
-
+  const flip = () => {
+    setState(State.RESULT);
+  };
   return (
     <>
       <div className="w-[100vw] flex flex-col">
         <div className="flex flex-row w-full gap-8 bg-red-500">
           {state !== State.WAITING && state !== State.INIT
-            ? botHand.map((card) => <CardComponent card={card} className="" />)
+            ? botHand.map((card) => (
+                <CardComponent
+                  card={card}
+                  className=""
+                  isFlipped={state === State.RESULT}
+                />
+              ))
             : null}
         </div>
         <div className="flex flex-row w-full gap-8 bg-green-500">
           {state !== State.WAITING && state !== State.INIT
-            ? userHand.map((card) => <CardComponent card={card} className="" />)
+            ? userHand.map((card) => (
+                <CardComponent card={card} className="" isFlipped={true} />
+              ))
             : null}
         </div>
       </div>
@@ -46,6 +56,12 @@ function App() {
           className="p-4 rounded-md bg-blue-800 text-white active:bg-blue-600"
         >
           Start
+        </button>
+        <button
+          onClick={flip}
+          className="p-4 rounded-md bg-blue-800 text-white active:bg-blue-600"
+        >
+          Flip
         </button>
       </div>
     </>
