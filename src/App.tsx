@@ -29,18 +29,14 @@ function App() {
   return (
     <>
       <div className="w-[100vw] flex flex-col">
-        <div className="flex flex-row w-full gap-8">
+        <div className="flex flex-row w-full gap-8 bg-red-500">
           {state !== State.WAITING && state !== State.INIT
-            ? botHand.map((card) => (
-                <CardComponent card={card} className="bg-red-500" />
-              ))
+            ? botHand.map((card) => <CardComponent card={card} className="" />)
             : null}
         </div>
-        <div className="flex flex-row w-full gap-8">
+        <div className="flex flex-row w-full gap-8 bg-green-500">
           {state !== State.WAITING && state !== State.INIT
-            ? userHand.map((card) => (
-                <CardComponent card={card} className="bg-green-500" />
-              ))
+            ? userHand.map((card) => <CardComponent card={card} className="" />)
             : null}
         </div>
       </div>
