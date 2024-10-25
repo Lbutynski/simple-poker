@@ -61,6 +61,7 @@ function App() {
   };
   return (
     <div className="flex justify-center items-center flex-col min-h-screen">
+      <h1 className="text-2xl font-bold m-4">Simple Poker</h1>
       <div className="w-[100vw] flex flex-col">
         <div className="flex flex-row w-full gap-8 bg-red-500 justify-center">
           {state !== State.WAITING && state !== State.INIT
