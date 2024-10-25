@@ -60,9 +60,9 @@ function App() {
     setSelectedCards(new Set());
   };
   return (
-    <>
+    <div className="flex justify-center items-center flex-col min-h-screen">
       <div className="w-[100vw] flex flex-col">
-        <div className="flex flex-row w-full gap-8 bg-red-500">
+        <div className="flex flex-row w-full gap-8 bg-red-500 justify-center">
           {state !== State.WAITING && state !== State.INIT
             ? botHand.map((card) => (
                 <CardComponent
@@ -73,7 +73,7 @@ function App() {
               ))
             : null}
         </div>
-        <div className="flex flex-row w-full gap-8 bg-green-500">
+        <div className="flex flex-row w-full gap-8 bg-green-500 justify-center">
           {state !== State.WAITING && state !== State.INIT
             ? userHand.map((card) => (
                 <div>
@@ -92,7 +92,7 @@ function App() {
             : null}
         </div>
       </div>
-      <div>
+      <div className=" flex justify-center gap-4">
         {state === State.WAITING || state === State.RESULT ? (
           <button
             onClick={init}
@@ -128,7 +128,7 @@ function App() {
             : "You lose"
           : null}
       </span>
-    </>
+    </div>
   );
 }
 
