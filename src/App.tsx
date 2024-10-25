@@ -1,5 +1,58 @@
+import { useState } from "react";
+import { pick } from "./utils/cards";
+import { Deck, State } from "./types/cardType";
+import CardComponent from "./component/CardComponent";
+
 function App() {
-  return <></>;
+  const [state, setState] = useState<State>(State.WAITING);
+  const values = ["7", "8", "9", "10", "jack", "queen", "king", "ace"];
+  const suits = ["heart", "diamond", "spade", "club"];
+  const standardDeck = [] as Deck;
+  for (const value of values) {
+    for (const suit of suits) {
+      standardDeck.push({ value, suit });
+    }
+  }
+  const [cardDeck, setCardDeck] = useState<Deck>(standardDeck);
+  const [botHand, setBotHand] = useState<Deck>([]);
+  const [userHand, setUserHand] = useState<Deck>([]);
+  const init = () => {
+    setState(State.INIT);
+    setCardDeck(standardDeck);
+    const { arr: restCards, sub: cardsPicked } = pick(cardDeck, 8);
+    setCardDeck(restCards);
+    setBotHand(cardsPicked.slice(0, 4));
+    setUserHand(cardsPicked.slice(4));
+    setState(State.USER);
+  };
+  return (
+    <>
+      <div className="w-[100vw] flex flex-col">
+        <div className="flex flex-row w-full gap-8">
+          {state !== State.WAITING && state !== State.INIT
+            ? botHand.map((card) => (
+                <CardComponent card={card} className="bg-red-500" />
+              ))
+            : null}
+        </div>
+        <div className="flex flex-row w-full gap-8">
+          {state !== State.WAITING && state !== State.INIT
+            ? userHand.map((card) => (
+                <CardComponent card={card} className="bg-green-500" />
+              ))
+            : null}
+        </div>
+      </div>
+      <div>
+        <button
+          onClick={init}
+          className="p-4 rounded-md bg-blue-800 text-white active:bg-blue-600"
+        >
+          Start
+        </button>
+      </div>
+    </>
+  );
 }
 
 export default App;
